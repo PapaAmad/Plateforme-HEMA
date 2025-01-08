@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet de Statistique Exploratoire Spatiale</title>
+    <link href="assets/img/ensae.jpg" rel="icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="css/note-technique.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#ffffff">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                Plateforme HEMA
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                            </svg>
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="guide.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+                            </svg>
+                            Guide
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                            </svg>
+                            Note Technique
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="animated-title">Note Technique</h1>
+
+        <div class="guide-section">
+            <h2>M&#xe9;thodologie</h2>
+            <p>Cette section d&#xe9;taille les m&#xe9;thodes statistiques et analytiques utilis&#xe9;es dans notre plateforme.</p>
+            
+            <div class="tech-details">
+                <h3>Sources des Donn&#xe9;es</h3>
+                <ul>
+                    <li>Donn&#xe9;es d&#xe9;mographiques : recensements nationaux</li>
+                    <li>Indicateurs &#xe9;conomiques : banques de donn&#xe9;es internationales</li>
+                    <li>Donn&#xe9;es g&#xe9;ospatiales : OpenStreetMap et sources gouvernementales</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="guide-section">
+            <h2>Traitement des Donn&#xe9;es</h2>
+            <div class="tech-details">
+                <p>Les donn&#xe9;es sont trait&#xe9;es selon le protocole suivant :</p>
+                <ol>
+                    <li>Nettoyage et validation des donn&#xe9;es brutes</li>
+                    <li>Agr&#xe9;gation au niveau infranational</li>
+                    <li>Calcul des indicateurs statistiques</li>
+                    <li>Validation crois&#xe9;e des r&#xe9;sultats</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="guide-section">
+            <h2>Sp&#xe9;cifications Techniques</h2>
+            <div class="tech-details">
+                <h3>Configuration Requise</h3>
+                <ul>
+                    <li>Navigateurs support&#xe9;s : Chrome (v70+), Firefox (v65+), Safari (v12+)</li>
+                    <li>R&#xe9;solution d&apos;&#xe9;cran minimale : 320px</li>
+                    <li>JavaScript doit &#xea;tre activ&#xe9;</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="guide-section">
+            <h2>Mises &#xe0; Jour</h2>
+            <div class="tech-details version-history">
+                <div class="version">
+                    <h3>Version 1.1.0</h3>
+                    <p class="date">D&#xe9;cembre 2023</p>
+                    <ul>
+                        <li>Ajout de nouveaux indicateurs</li>
+                        <li>Am&#xe9;lioration de la performance des cartes</li>
+                        <li>Optimisation pour appareils mobiles</li>
+                    </ul>
+                </div>
+                <div class="version">
+                    <h3>Version 1.0.0</h3>
+                    <p class="date">Septembre 2023</p>
+                    <ul>
+                        <li>Lancement initial</li>
+                        <li>Impl&#xe9;mentation des fonctionnalit&#xe9;s de base</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
