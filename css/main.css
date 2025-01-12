@@ -36,6 +36,7 @@ body {
     box-shadow: 0 4px 24px rgba(0,0,0,0.08);
 }
 #map {
+    position: relative;
     height: 500px;
     width: 100%;
     margin-top: 25px;
@@ -120,4 +121,59 @@ body {
     .selection-row {
         padding: 15px;
     }
+}
+.map-controls {
+    position: absolute;
+    top: 80px;
+    left: 10px;
+    z-index: 1000;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    min-width: 250px;
+}
+.map-controls .form-label {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+.map-controls .form-check {
+    margin-bottom: 8px;
+}
+.map-controls hr {
+    margin: 15px 0;
+    opacity: 0.2;
+}
+.index-info-box {
+    display: none;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 20px 0;
+    border-left: 5px solid #1a237e;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    animation: fadeIn 0.5s ease-out;
+}
+
+.index-info-box h4 {
+    color: #1a237e;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.index-info-box p {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.index-info-box .advantages {
+    margin-top: 15px;
+    padding-left: 20px;
+}
+
+.index-info-box .advantages li {
+    margin-bottom: 8px;
+    color: #2c3e50;
 }

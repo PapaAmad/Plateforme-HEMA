@@ -1,62 +1,118 @@
-var map = L.map('map').setView([20, 0], 2);
+/* main.js */
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; OpenStreetMap contributors'
-}).addTo(map);
+// Éléments HTML
+const countrySelect  = document.getElementById('countrySelect');
+const indexSelect    = document.getElementById('indexSelect');
+const indexSelection = document.querySelector('.index-selection'); // la div masquée
+const indexInfo      = document.getElementById('indexInfo');
+const indexDesc      = document.getElementById('indexDescription');
+const indexAdv       = document.getElementById('indexAdvantages');
+const shinyContainer = document.getElementById('shinyContainer');
+const shinyFrame     = document.getElementById('shinyFrame');
 
-const countrySelect = document.getElementById('countrySelect');
-const indexSelect = document.getElementById('indexSelect');
-const indexSelection = document.querySelector('.index-selection');
-const mapElement = document.getElementById('map');
+// Descriptions par indice
+const indexDescriptions = {
+  Mean: {
+    description: "The mean is the arithmetic average of the observed values...",
+    advantages: [
+      "Simple to interpret",
+      "Commonly used statistic",
+      "Good for overall level"
+    ]
+  },
+  Median: {
+    description: "The median is the middle value that divides the data in half...",
+    advantages: [
+      "Robust to outliers",
+      "Reflects central tendency well"
+    ]
+  },
+  Min: {
+    description: "Minimum value indicates the lowest observed measure...",
+    advantages: [
+      "Shows boundary condition",
+      "Simple to understand"
+    ]
+  },
+  Max: {
+    description: "Maximum value indicates the highest observed measure...",
+    advantages: [
+      "Shows extreme condition",
+      "Easy to interpret"
+    ]
+  }
+};
 
-countrySelect.addEventListener('change', function() {
-    if (this.value) {
-        indexSelection.style.display = 'block';
-        indexSelect.disabled = false;
-        indexSelect.value = indexSelect.options[0].value; 
-        mapElement.style.display = 'none'; 
+// 1) Choix du pays
+countrySelect.addEventListener('change', function () {
+  if (this.value) {
+    // On affiche la box index-selection (par défaut, display:none dans le CSS)
+    indexSelection.style.display = 'block';
+
+    // On active le select index
+    indexSelect.disabled = false;
+
+    // On peut reset l'indice
+    indexSelect.value = indexSelect.options[0].value;
+    indexInfo.style.display = 'none';
+    shinyContainer.style.display = 'none';
+
+    // Petit effet slideIn
+    indexSelection.style.animation = 'slideIn 0.5s ease-out';
+  } else {
+    // Pas de pays => on cache
+    indexSelection.style.display = 'none';
+    indexSelect.disabled = true;
+    indexInfo.style.display = 'none';
+    shinyContainer.style.display = 'none';
+  }
+});
+
+// 2) Choix de l'indice
+indexSelect.addEventListener('change', function () {
+  if (this.value && countrySelect.value) {
+    // Afficher "About this Index"
+    const info = indexDescriptions[this.value];
+    if (info) {
+      indexDesc.textContent = info.description;
+      indexAdv.innerHTML = info.advantages
+        .map(a => `<li>${a}</li>`)
+        .join('');
+      indexInfo.style.display = 'block';
     } else {
-        indexSelection.style.display = 'none';
-        indexSelect.disabled = true;
-        mapElement.style.display = 'none';
+      indexInfo.style.display = 'none';
     }
+    // Afficher l'iframe Shiny
+    showShinyApp();
+  } else {
+    indexInfo.style.display = 'none';
+    shinyContainer.style.display = 'none';
+  }
 });
 
-indexSelect.addEventListener('change', function() {
-    if (this.value && countrySelect.value) {
-        mapElement.style.display = 'block';
-        updateMap();
-    }
-});
+// 3) Fonction pour construire l'URL Shiny et l'afficher dans l'iframe
+function showShinyApp() {
+  const paysVal  = countrySelect.value; // Assurez-vous que 'countrySelect' est bien défini dans votre HTML
+  const statVal  = indexSelect.value;   // Assurez-vous que 'indexSelect' est bien défini dans votre HTML
 
-function updateMap() {
-    var country = countrySelect.value;
-    var index = indexSelect.value;
+  // Par exemple, on fixe display_type = aggregated_poly
+  // (vous pouvez changer si besoin)
+  const displayType = 'aggregated_poly';
 
-    map.eachLayer((layer) => {
-        if (layer instanceof L.Marker) {
-            map.removeLayer(layer);
-        }
-    });
+  // URL de base de votre app Shiny (à adapter)
+  const baseURL = "https://papaamad.shinyapps.io/SES_Shiny/"; // Remplacez par l'URL de déploiement de votre app Shiny
 
-    const countryData = {
-        france: { lat: 46.2276, lng: 2.2137 },
-        germany: { lat: 51.1657, lng: 10.4515 },
-        usa: { lat: 37.0902, lng: -95.7129 }
-    };
+  // Construire la query string
+  const queryString = `?pays=${encodeURIComponent(paysVal)}`
+                    + `&stat=${encodeURIComponent(statVal)}`
+                    + `&display_type=${encodeURIComponent(displayType)}`;
 
-    const selectedCountry = countryData[country];
-    
-    if (selectedCountry) {
-        map.setView([selectedCountry.lat, selectedCountry.lng], 5);
-        L.marker([selectedCountry.lat, selectedCountry.lng])
-            .addTo(map)
-            .bindPopup(`<b>${country.charAt(0).toUpperCase() + country.slice(1)}</b><br>${index}`)
-            .openPopup();
-    }
-    
-    setTimeout(() => {
-        map.invalidateSize();
-    }, 100);
+  const finalURL = baseURL + queryString;
+
+  // Mettre à jour la source de l'iframe
+  shinyFrame.src = finalURL;
+
+  // Afficher le conteneur
+  shinyContainer.style.display = 'block';
 }
+

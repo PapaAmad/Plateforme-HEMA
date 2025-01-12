@@ -1,0 +1,13 @@
+name: SES_Shiny
+title: SES_Shiny
+username: papaamad
+account: papaamad
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 13703479
+bundleId: 9639328
+url: https://papaamad.shinyapps.io/SES_Shiny/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: app.R
