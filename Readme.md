@@ -1,112 +1,120 @@
-# Projet de statistique exploratoire spatiale
+# Mon Projet
 
-# Important Notice (as of 2024-06-18)
+> <span style="color: #8a2be2; font-size: 1.2em;">❗ Important</span>  
+> La branche de développement pourrait être instable en ce moment en raison des nombreuses modifications majeures à venir.  
+> **Il est donc recommandé d’utiliser la version stable disponible sur la branche `master`.**
 
-> **Important**  
-> Due to all the new major changes coming to Leon AI, the development branch might be unstable.  
-> It is recommended to use the older version under the master branch.
-
-Please note that older versions do not make use of any foundation model, which will be introduced in upcoming versions.
+Veuillez noter que les anciennes versions n’utilisent aucun *foundation model* ; ils seront introduits dans les futures versions.
 
 ---
 
-## Outdated Documentation
+## Documentation obsolète
 
-Please note that the documentation and this README are not up to date. We’ve made significant changes to Leon over the past few months, including the introduction of new TTS and ASR engines, and a hybrid approach that balances LLM, simple classification, and multiple NLP techniques to achieve optimal speed, customization, and accuracy. We’ll update the documentation for the official release.
+Veuillez noter que la documentation et ce README ne sont plus à jour.  
+Nous avons effectué d’importants changements ces derniers mois, notamment :
 
----
+- Introduction de **nouveaux moteurs de TTS et d’ASR**  
+- Approche hybride combinant **LLM, classification simple et multiples techniques NLP**  
+- Objectif : **vitesse optimale**, **personnalisation** et **précision**  
 
-## Project History and Future Plans
-
-Since its inception in 2017, Leon has undergone significant transformations. Although we’ve been inconsistent in shipping updates over the years, we’re now focused on maturing the project. With the recent integration of transformers-based models, we’re prepared to unlock Leon’s full potential.
-
-Our next step is to finalize the latest features for the official release. Then we’ll be establishing a group of active contributors to work together, develop new skills, and share them with the community. A skill registry platform will be built (see it as the npm or pip registry but for skills).
-
-While I would love to devote more time to Leon, I’m currently unable to do so because I have bills to pay. I have some ideas about how to monetize Leon in the future (Leon’s core will always remain open source), but before getting there, there is still a long way to go.
-
-Until then, any financial support by [sponsoring Leon](#) is much appreciated 🙂
+Une mise à jour complète de la documentation officielle est prévue pour la sortie officielle.
 
 ---
 
-## Latest Release
+## Historique du projet & plans futurs
 
-Check out the [latest release blog post](#).
+Depuis 2017, ce projet a connu de nombreuses transformations. Nous avons parfois été irréguliers dans les mises à jour, mais nous nous concentrons désormais sur la maturité du projet. Avec l’intégration récente de modèles basés sur des Transformers, nous sommes prêts à libérer pleinement son potentiel.
 
-![Leon v8-beta](https://user-images.githubusercontent.com/placeholder/demo.png)
+Prochaines étapes :
 
-- **No Python Env at Runtime**
-- **TypeScript Rewrite**
-- **New Codebase**
-- **Telemetry Service**
-- **Report Service & More!**
+1. Finaliser les dernières fonctionnalités pour la release officielle.  
+2. Mettre en place un groupe de contributeurs actifs pour collaborer, développer de nouvelles “skills” et les partager avec la communauté.  
+3. Créer une plateforme de “skill registry” (similaire à npm ou PyPI, mais pour nos Skills).
+
+J’aimerais consacrer plus de temps à ce projet, mais j’ai actuellement d’autres contraintes financières. Des idées de monétisation sont à l’étude (le cœur restera open source), mais cela prendra du temps.
+
+Toute aide financière via [un sponsoring](#) est donc très appréciée 🙂
+
+---
+
+## Dernière version
+
+Consultez le [dernier article de blog sur la release](#).
+
+![Visuel de la Release v8-beta](https://user-images.githubusercontent.com/placeholder/demo.png)
+
+- **Environnement Python non requis au runtime**  
+- **Réécrit en TypeScript**  
+- **Nouveau codebase**  
+- **Service de télémétrie**  
+- **Service de rapports & plus encore !**
 
 ---
 
 ## Introduction
 
-Leon is an open-source personal assistant who can live on your server.
+Ceci est un assistant personnel open-source pouvant s’exécuter sur votre propre serveur.
 
-### Why?
+### Pourquoi ?
 
-1. If you are a developer (or not), you may want to build many things that could help in your daily life.  
-   Instead of building a dedicated project for each of those ideas, Leon can help you with his Skills structure.
+1. Si vous êtes développeur (ou non), vous souhaiterez peut-être créer de nombreux outils pour votre quotidien.  
+   Plutôt que d’écrire un projet dédié pour chaque idée, vous pouvez tout regrouper via la structure “Skills”.
 
-2. With this generic structure, everyone can create their own skills and share them with others.  
-   Therefore there is only one core (to rule them all).
+2. Chacun peut alors créer ses propres Skills et les partager.  
+   Ainsi, il n’y a qu’un “core” unique (pour les gouverner tous).
 
-3. Leon uses AI concepts, which is cool.
+3. Le projet utilise des concepts d’IA, ce qui est plutôt sympa.
 
-4. Privacy matters; you can configure Leon to talk with him offline.  
-   You can already text with him without any third-party services.
+4. La **vie privée** est importante : vous pouvez configurer l’assistant pour discuter **hors ligne**, sans services tiers.
 
-5. Open source is great.
-
----
-
-## What is this repository for?
-
-This repository contains the following nodes of Leon:
-
-- **The server**  
-- **Skills**  
-- **The web app**  
-- **The hotword node**  
-- **The TCP server** (for inter-process communication between Leon and third-party nodes such as spaCy)  
-- **The Python bridge** (the connector between the core and skills made with Python)
+5. L’open source, c’est génial.
 
 ---
 
-## What is Leon able to do?
+## À quoi sert ce dépôt ?
 
-- Perform voice commands (STT/TTS)
-- Support text-based interactions
-- Handle various “skills” for different tasks
-- Let you create and share new skills
+Ce dépôt contient les nœuds suivants :
 
-*(More functionalities will be documented soon...)*
+- **Le serveur**  
+- **Les Skills**  
+- **L’application web**  
+- **Le module de “hotword”** (activation vocale)  
+- **Le serveur TCP** (communication inter-processus avec des nœuds tiers, ex. spaCy)  
+- **Le pont Python** (connecteur entre le “core” et les Skills écrits en Python)
 
 ---
 
-## Prerequisites
+## De quoi est capable l’assistant ?
 
-Make sure you have the following installed:
+- Gérer des commandes vocales (STT/TTS)
+- Prendre en charge des interactions textuelles
+- Gérer plusieurs “skills” dédiées à différentes tâches
+- Vous permettre de créer et partager vos propres “skills”
 
-- **Node.js** (version X or above)
-- **npm** or **yarn**
-- **Python** (version 3.XX)
+*(D’autres fonctionnalités arriveront dans la documentation...)*
 
-To install these prerequisites, you can follow the [How To](#) section of the documentation.
+---
+
+## Prérequis
+
+Assurez-vous d’avoir installé :
+
+- **Node.js** (version X ou supérieure)  
+- **npm** ou **yarn**  
+- **Python** (version 3.x)
+
+Pour installer ces dépendances, consultez la [section How To](#) de la documentation.
 
 ---
 
 ## Installation
 
 ```bash
-# Install the Leon CLI
+# Installer le CLI
 npm install --global @leon-ai/cli
 
-# Install Leon (stable branch)
+# Installer la version stable du projet
 leon create birth
 
-# OR install from the develop branch:
+# OU installer depuis la branche develop
 leon create birth --develop
