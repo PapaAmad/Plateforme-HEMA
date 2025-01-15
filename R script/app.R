@@ -98,7 +98,8 @@ ui <- fluidPage(
       # On n'affiche le bloc résultats que si mode poly + un polygone est cliqué
       conditionalPanel(
         condition = "input.display_type == 'aggregated_poly' && output.polyClicked == true",
-        h4("Résultats pour la zone sélectionnée"),
+        # Remplacement du titre statique par un titre dynamique
+        uiOutput("selected_zone_title"),
         
         div(
           style = "height:600px; overflow-y:auto; border: 1px solid #ddd; padding: 10px;",
@@ -206,9 +207,14 @@ server <- function(input, output, session) {
     if (input$display_type == "aggregated_poly") {
       req(sf_with_stat())
       
+      # Récupérer dynamiquement le nom de la première colonne
+      name_col <- names(sf_with_stat())[1]
+      
+      # Extraire les valeurs pour la couleur
       col_name <- paste0(tolower(selected_stat()), "_index")
       vals <- sf_with_stat()[[col_name]]
       
+      # Définir la palette de couleurs
       pal <- colorNumeric("viridis", domain = vals, na.color = "transparent")
       
       leaflet(sf_with_stat()) %>%
@@ -219,7 +225,20 @@ server <- function(input, output, session) {
           fillOpacity = 0.7,
           color = "white",
           weight = 2,
-          highlightOptions = highlightOptions(color = "blue", weight = 3, bringToFront = TRUE)
+          highlightOptions = highlightOptions(color = "blue", weight = 3, bringToFront = TRUE),
+          
+          # Ajouter l'étiquette en utilisant la première colonne
+          label = ~get(name_col),
+          
+          # Personnaliser les options de l'étiquette
+          labelOptions = labelOptions(
+            style = list(
+              "font-weight" = "normal",
+              padding = "3px 8px"
+            ),
+            textsize = "15px",
+            direction = "auto"
+          )
         ) %>%
         addLegend(
           position = "bottomright",
@@ -319,6 +338,22 @@ server <- function(input, output, session) {
         y = paste("Valeur", selected_stat()),
         title = paste("Évolution de", selected_stat(), "de 2000 à 2022")
       )
+  })
+  
+  # J) Rendu Dynamique du Titre des Résultats
+  output$selected_zone_title <- renderUI({
+    req(selected_poly_index())
+    
+    shape_data <- sf_admin_react() %>%
+      mutate(row_id = dplyr::row_number())
+    
+    idx <- selected_poly_index()
+    poly_sel <- shape_data[shape_data$row_id == idx, ]
+    
+    # Extraire le nom de la première colonne
+    zone_name <- poly_sel[[1]]
+    
+    h4(paste("Résultats pour la zone", zone_name))
   })
 }
 
