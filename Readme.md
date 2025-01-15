@@ -1,14 +1,11 @@
 # Mon Projet
 
-> <span style="color: #8a2be2; font-weight: bold;">
->   💬 Important
-> </span>  
->  
-> Due to all the new major changes coming to Leon AI, the development branch might be unstable.  
-> It is recommended to use the older version under the master branch.
+# Important Notice (as of 2024-06-18)
+
+> [!IMPORTANT]
+> Due to all the new major changes coming to Leon AI, the development branch might be unstable. It is recommended to use the older version under the master branch.
 >
 > Please note that older versions do not make use of any foundation model, which will be introduced in upcoming versions.
-
 
 Veuillez noter que les anciennes versions n’utilisent aucun *foundation model* ; ils seront introduits dans les futures versions.
 
