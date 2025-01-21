@@ -3,7 +3,7 @@
 // Éléments HTML
 const countrySelect  = document.getElementById('countrySelect');
 const indexSelect    = document.getElementById('indexSelect');
-const indexSelection = document.querySelector('.index-selection'); // la div masquée
+const indexSelection = document.querySelector('.index-selection');
 const indexInfo      = document.getElementById('indexInfo');
 const indexDesc      = document.getElementById('indexDescription');
 const indexAdv       = document.getElementById('indexAdvantages');
@@ -92,15 +92,14 @@ indexSelect.addEventListener('change', function () {
 
 // 3) Fonction pour construire l'URL Shiny et l'afficher dans l'iframe
 function showShinyApp() {
-  const paysVal  = countrySelect.value; // Assurez-vous que 'countrySelect' est bien défini dans votre HTML
-  const statVal  = indexSelect.value;   // Assurez-vous que 'indexSelect' est bien défini dans votre HTML
+  const paysVal  = countrySelect.value;
+  const statVal  = indexSelect.value; 
 
   // Par exemple, on fixe display_type = aggregated_poly
-  // (vous pouvez changer si besoin)
   const displayType = 'aggregated_poly';
 
   // URL de base de votre app Shiny (à adapter)
-  const baseURL = "https://papaamad.shinyapps.io/SES_Shiny/"; // Remplacez par l'URL de déploiement de votre app Shiny
+  const baseURL = "https://papaamad.shinyapps.io/SES_Shiny/";
 
   // Construire la query string
   const queryString = `?pays=${encodeURIComponent(paysVal)}`
