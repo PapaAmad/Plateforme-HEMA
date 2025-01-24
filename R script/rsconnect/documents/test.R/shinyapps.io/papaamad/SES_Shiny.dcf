@@ -5,9 +5,9 @@ account: papaamad
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 13703479
-bundleId: 9649450
+bundleId: 9684481
 url: https://papaamad.shinyapps.io/SES_Shiny/
 version: 1
 asMultiple: FALSE
 asStatic: FALSE
-ignoredFiles: .RData|app.R
+ignoredFiles: .RData|app.R|test_malaria_classification.R|test_maliria_worldpop.R

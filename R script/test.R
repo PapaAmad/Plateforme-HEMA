@@ -70,8 +70,11 @@ ui <- fluidPage(
       wellPanel(
         h4("Options"),
         radioButtons("display_type", "Type de visualisation :",
-                     choices = c("Polygones agrégés (2000-2022)" = "aggregated_poly",
-                                 "Raster agrégé (2000-2022)" = "aggregated_raster")),
+                     choices = c(
+                       "Polygones agrégés (2000-2022)" = "aggregated_poly",
+                       "Raster agrégé (2000-2022)" = "aggregated_raster",
+                       "Raster classifié 2021" = "classified_raster"  # Mise à jour de l'année
+                     )),
         
         # Suppression des sélections 'pays' et 'stat'
         
@@ -247,7 +250,7 @@ server <- function(input, output, session) {
           title = paste("Stat :", selected_stat(), "(2000-2022)")
         )
       
-    } else {
+    } else if (input$display_type == "aggregated_raster") {
       # Mode Raster agrégé
       req(aggregated_raster())
       
@@ -271,6 +274,62 @@ server <- function(input, output, session) {
           values = c(r_min, r_max),
           title = paste("Indice :", selected_stat(), "(2000-2022)")
         )
+      
+    } else if (input$display_type == "classified_raster") {
+      # Mode Raster Classifié 2021
+      req(classified_raster_2021())
+      
+      # Récupérer les rasters classifiés binaires
+      class_aucun <- classified_raster_2021()$aucun
+      class_moyen <- classified_raster_2021()$moyen
+      class_grave <- classified_raster_2021()$grave
+      
+      # Définir les palettes de couleurs pour chaque classe
+      pal_vert <- colorFactor(palette = "green", na.color = "transparent", levels = c(1))
+      pal_jaune <- colorFactor(palette = "yellow", na.color = "transparent", levels = c(1))
+      pal_rouge <- colorFactor(palette = "red", na.color = "transparent", levels = c(1))
+      
+      leaflet() %>%
+        addTiles() %>%
+        
+        # Ajouter le raster aucun
+        addRasterImage(
+          class_aucun, 
+          colors = pal_vert,
+          opacity = 0.6,
+          group = "Aucun"
+        ) %>%
+        
+        # Ajouter le raster moyen
+        addRasterImage(
+          class_moyen, 
+          colors = pal_jaune, 
+          opacity = 0.6, 
+          group = "Moyen"
+        ) %>%
+        
+        # Ajouter le raster grave
+        addRasterImage(
+          class_grave, 
+          colors = pal_rouge, 
+          opacity = 0.6,
+          group = "Grave"
+        ) %>%
+        
+        # Ajouter des contrôles de couches pour activer/désactiver chaque raster binaire
+        addLayersControl(
+          overlayGroups = c("Aucun", "Moyen", "Grave"),
+          options = layersControlOptions(collapsed = FALSE)
+        ) %>%
+        
+        # Ajouter une légende
+        addLegend("bottomright", 
+                  colors = c("green", "yellow", "red"), 
+                  labels = c("Aucun", 
+                             "Moyen", 
+                             "Grave"),
+                  title = "Classification",
+                  opacity = 1)
     }
   })
   
@@ -355,6 +414,44 @@ server <- function(input, output, session) {
     
     h4(paste("Résultats pour la zone", zone_name))
   })
+  
+  # K) Fonction de Classification Binaire pour 2021
+  classified_raster_2021 <- reactive({
+    req(input$display_type == "classified_raster")
+    
+    # Charger le stack de rasters basé sur le pays sélectionné
+    stack_data <- stack_react()
+    
+    # Vérifier que le stack a des couches
+    validate(
+      need(nlayers(stack_data) >= 22, "Aucune couche raster disponible pour 2021.")
+    )
+    
+    # Extraire le raster pour l'année 2021 (supposons que c'est l'index 22)
+    raster_2021 <- stack_data[[22]]
+    
+    # Calcul de la moyenne et de l'écart type sur le stack (2000-2022)
+    moy_raster <- calc(stack_data, fun = mean, na.rm = TRUE)
+    ecrt_raster <- calc(stack_data, fun = sd, na.rm = TRUE)
+    
+    # Définir les seuils de classification
+    seuil1 <- moy_raster + ecrt_raster
+    seuil2 <- moy_raster + 2 * ecrt_raster
+    
+    # Étape 5 : Créer des rasters binaires pour chaque condition
+    aucun <- raster_2021 <= seuil1
+    moyen <- (raster_2021 > seuil1) & (raster_2021 < seuil2)
+    grave <- raster_2021 >= seuil2
+    
+    # Convertir les valeurs logiques (TRUE/FALSE) en numériques (1/NA)
+    aucun <- calc(aucun, fun = function(x) { ifelse(x, 1, NA) })
+    moyen <- calc(moyen, fun = function(x) { ifelse(x, 1, NA) })
+    grave <- calc(grave, fun = function(x) { ifelse(x, 1, NA) })
+    
+    # Retourner les rasters binaires dans une liste
+    list(aucun = aucun, moyen = moyen, grave = grave)
+  })
+  
 }
 
 # -----------------------------
