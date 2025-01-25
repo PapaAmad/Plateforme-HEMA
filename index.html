@@ -99,23 +99,25 @@
 
   <!-- CONTENU PRINCIPAL -->
   <div class="container">
-    <h1 class="animated-title">Plateforme de Statistique Exploratoire Spatiale</h1>
+    <h1 class="animated-title">Plateforme de statistique exploratoire spatiale</h1>
         
     <div class="intro-text">
       <p>
-        This web application presents a summary of the child and maternal health
-        and development indicators calculated at subnational level (geographic areas 
-        below the national level) for a selection of countries.
+        Cette plateforme web présente un résumé des indicateurs statistiques spatiaux 
+        calculés au niveau administratif pour le Sénégal et le Burkina Faso. Elle offre 
+        une visualisation des indicateurs tels que le taux de malaria, des indices spectraux 
+        comme le NDVI, ainsi que des indicateurs liés aux événements dangereux.
       </p>
       <p>
-        Multiple indicators are presented in map, chart, and tabulated form, and for 
-        multiple time points based on data availability. Changes over time for each 
-        indicator are also presented.
+        Ces indicateurs sont affichés sous forme de cartes, de graphiques et de tableaux, 
+        et couvrent différentes périodes en fonction de la disponibilité des données. 
+        Les variations temporelles de chaque indicateur sont également présentées pour 
+        faciliter l’analyse exploratoire.
       </p>
       <p>
-        Please consult the Guide and the About sections for more information 
-        on how to use this portal.
-      </p>
+        Veuillez consulter la section <a href="guide.html">Guide</a> pour plus d'informations sur 
+        l'utilisation de cette plateforme.
+      </p>      
     </div>
 
     <!-- Choix du pays et de l'indice -->
@@ -134,10 +136,13 @@
         <select class="form-select" id="indexSelect" disabled>
           <option selected disabled>-- Sélectionnez un indice --</option>
           <optgroup label="Taux de malaria">
-          <option value="Mean">Moyen</option>
-          <option value="Median">Median</option>
-          <option value="Min">Minimal</option>
-          <option value="Max">Maximal</option></optgroup>
+          <option value="Mean">Taux moyen (2000 à 2022)</option>
+          <option value="Median">Taux median (2000 à 2022)</option>
+          <option value="Min">Taux minimal (2000 à 2022)</option>
+          <option value="Max">Taux maximal(2000 à 2022)</option>
+          <option value="Children_Malaria">Nombre d'enfants malades (2000 à 2022)</option>
+          <option value="Children_Rate">Taux d'enfants malades (2000 à 2022)</option>
+          </optgroup>
         </select>
       </div>
     </div>

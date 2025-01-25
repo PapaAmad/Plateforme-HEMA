@@ -149,7 +149,7 @@ calc_children_indicators <- function(admin_sf, selected_pays) {
 }
 
 # -----------------------------
-# 4) Interface UI
+# 4) Interface UI (modifié)
 # -----------------------------
 ui <- fluidPage(
   fluidRow(
@@ -171,17 +171,7 @@ ui <- fluidPage(
           selectInput("admin_level", "Niveau administratif :",
                       choices = c("Niveau 0" = 0, "Niveau 1" = 1, "Niveau 2" = 2, "Niveau 3" = 3),
                       selected = 1),
-          # Ajouter une sélection de statistique
-          selectInput("stat_selection", "Statistique :",
-                      choices = c(
-                        "Mean" = "Mean",
-                        "Median" = "Median",
-                        "Min" = "Min",
-                        "Max" = "Max",
-                        "Nombre d'enfants malades" = "Children_Malaria",
-                        "Taux d'enfants malades" = "Children_Rate"
-                      ),
-                      selected = "Mean"),
+          # Suppression du sélecteur de statistique
           helpText("Cliquez sur un polygone pour voir la série temporelle.")
         )
       )
@@ -216,7 +206,7 @@ ui <- fluidPage(
 )
 
 # -----------------------------
-# 5) Server
+# 5) Server (modifié)
 # -----------------------------
 server <- function(input, output, session) {
   
@@ -236,11 +226,12 @@ server <- function(input, output, session) {
     }
   })
   
-  # C) Extraire 'stat' depuis la sélection utilisateur
+  # C) Extraire 'stat' depuis les paramètres de l'URL
   selected_stat <- reactive({
-    stat <- input$stat_selection
-    if (is.null(stat) || !(stat %in% c("Mean", "Median", "Min", "Max", 
-                                       "Children_Malaria", "Children_Rate"))) {
+    stat <- query()$stat
+    allowed_stats <- c("Mean", "Median", "Min", "Max", 
+                       "Children_Malaria", "Children_Rate")
+    if (is.null(stat) || !(stat %in% allowed_stats)) {
       # Valeur par défaut ou gestion d'erreur
       "Mean"
     } else {
@@ -381,7 +372,7 @@ server <- function(input, output, session) {
             color = "white",
             weight = 2,
             highlightOptions = highlightOptions(color = "red", weight = 3, bringToFront = TRUE),
-            label = ~paste0(admin_sf[[1]], " Enfants malades: ", round(children_malaria_sum)),
+            label = ~paste0(admin_sf[[1]], " : Enfants malades = ", round(children_malaria_sum)),
             labelOptions = labelOptions(
               style = list(
                 "font-weight" = "normal",
@@ -413,7 +404,7 @@ server <- function(input, output, session) {
             color = "white",
             weight = 2,
             highlightOptions = highlightOptions(color = "blue", weight = 3, bringToFront = TRUE),
-            label = ~paste0(admin_sf[[1]], " Taux de malaria: ", round(taux_malaria_mean, 2), "%"),
+            label = ~paste0(admin_sf[[1]], " : Taux de malaria = ", round(taux_malaria_mean, 2), "%"),
             labelOptions = labelOptions(
               style = list(
                 "font-weight" = "normal",

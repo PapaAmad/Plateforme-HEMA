@@ -175,16 +175,3 @@ map1
 
 map2 <- calc_taux_enf_per_admin(admin = adm2_SN, raster = malaria_raster_2021)
 map2
-
-
-library(terra)
-
-# Charger le raster de population original
-WorldPop_BFA <- rast("data/Burkina/Rasters/WorldPop/worldpop_BFA.tif")
-
-# Vérifier les détails du raster
-print(WorldPop_BFA)
-plot(WorldPop_BFA)
-
-file.remove("data/Burkina/Rasters/WorldPop/worldpop_BFA_aggregated.tif")
-

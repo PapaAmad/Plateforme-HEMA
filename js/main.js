@@ -40,6 +40,20 @@ const indexDescriptions = {
       "Shows extreme condition",
       "Easy to interpret"
     ]
+  },
+  Children_Malaria: {
+    description: "Maximum value indicates the highest observed measure...",
+    advantages: [
+      "Shows extreme condition",
+      "Easy to interpret"
+    ]
+  },
+  Children_Rate: {
+    description: "Maximum value indicates the highest observed measure...",
+    advantages: [
+      "Shows extreme condition",
+      "Easy to interpret"
+    ]
   }
 };
 
