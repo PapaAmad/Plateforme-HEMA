@@ -114,10 +114,10 @@ function showShinyApp() {
   const paysVal  = countrySelect.value;
   const statVal  = indexSelect.value; 
 
-  // Par exemple, on fixe display_type = aggregated_poly
+  // On fixe display_type = aggregated_poly
   const displayType = 'aggregated_poly';
 
-  // URL de base de votre app Shiny (à adapter)
+  // URL de base de votre app Shiny
   const baseURL = "https://papaamad.shinyapps.io/SES_Shiny/";
 
   // Construire la query string
