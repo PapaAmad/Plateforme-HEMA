@@ -1,0 +1,13 @@
+name: SES_Shiny_Spectral
+title: SES_Shiny_Spectral
+username: papaamad
+account: papaamad
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 13811539
+bundleId: 9702189
+url: https://papaamad.shinyapps.io/SES_Shiny_Spectral/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: .RData|app.R|app_event.R|serveur_envet.R|test.R|test_malaria_classification.R|test_maliria_worldpop.R|ui_envent.R

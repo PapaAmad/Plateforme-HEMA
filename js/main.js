@@ -59,7 +59,53 @@ const indexDescriptions = {
       "Indique les régions avec des proportions élevées d'enfants malades",
       "Utile pour identifier les disparités sanitaires entre les régions"
     ]
-  }  
+  },  
+  NDVI: {
+    description: "Description for NDVI...",
+    advantages: [
+      "Advantage 1",
+      "Advantage 2",
+      "Advantage 3"
+    ]
+  },
+  MNDWI: {
+    description: "Description for MNDWI...",
+    advantages: [
+      "Advantage 1",
+      "Advantage 2",
+      "Advantage 3"
+    ]
+  },
+  BSI_1: {
+    description: "Description for BSI_1...",
+    advantages: [
+      "Advantage 1",
+      "Advantage 2",
+      "Advantage 3"
+    ]
+  },
+  NDBI: {
+    description: "Description for NDBI...",
+    advantages: [
+      "Advantage 1",
+      "Advantage 2",
+      "Advantage 3"
+    ]
+  },
+  EVI: {
+    description: "Description for EVI...",
+    advantages: [
+      "Advantage 1",
+      "Advantage 2",
+      "Advantage 3"
+    ]
+  }
+};
+
+// Mapping des groupes d'indices aux URLs Shiny correspondantes
+const shinyURLs = {
+  "Taux de malaria": "https://papaamad.shinyapps.io/SES_Shiny/",
+  "Indices spectraux": "https://papaamad.shinyapps.io/SES_Shiny_Spectral/"
 };
 
 // 1) Choix du pays
@@ -114,16 +160,24 @@ function showShinyApp() {
   const paysVal  = countrySelect.value;
   const statVal  = indexSelect.value; 
 
-  // On fixe display_type = aggregated_poly
-  const displayType = 'aggregated_poly';
+  // Trouver le groupe auquel appartient l'option sélectionnée
+  const selectedOption = indexSelect.options[indexSelect.selectedIndex];
+  const optgroup = selectedOption.parentElement;
+  const groupLabel = optgroup.label;
 
-  // URL de base de votre app Shiny
-  const baseURL = "https://papaamad.shinyapps.io/SES_Shiny/";
+  // Déterminer la base URL en fonction du groupe
+  let baseURL = "";
+  if (shinyURLs.hasOwnProperty(groupLabel)) {
+    baseURL = shinyURLs[groupLabel];
+  } else {
+    console.error("Groupe d'indice non reconnu :", groupLabel);
+    shinyContainer.style.display = 'none';
+    return;
+  }
 
   // Construire la query string
   const queryString = `?pays=${encodeURIComponent(paysVal)}`
-                    + `&stat=${encodeURIComponent(statVal)}`
-                    + `&display_type=${encodeURIComponent(displayType)}`;
+                    + `&stat=${encodeURIComponent(statVal)}`;
 
   const finalURL = baseURL + queryString;
 
@@ -133,4 +187,3 @@ function showShinyApp() {
   // Afficher le conteneur
   shinyContainer.style.display = 'block';
 }
-
