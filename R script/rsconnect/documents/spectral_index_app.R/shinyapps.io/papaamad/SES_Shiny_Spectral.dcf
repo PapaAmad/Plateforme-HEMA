@@ -5,7 +5,7 @@ account: papaamad
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 13811539
-bundleId: 9702189
+bundleId: 9707443
 url: https://papaamad.shinyapps.io/SES_Shiny_Spectral/
 version: 1
 asMultiple: FALSE

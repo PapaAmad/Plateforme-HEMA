@@ -37,6 +37,9 @@ load_shapefiles <- function(country) {
 }
 
 
+source("ui_envent.R")
+source("server_envet.R")
+
 # -----------------------------
 # Lancer l'application
 shinyApp(ui = ui, server = server)

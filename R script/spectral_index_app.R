@@ -7,21 +7,23 @@ library(viridis)
 library(exactextractr)
 library(ggplot2)
 
-# Définir les chemins des fichiers
+# --------------------------------------------------------------------
+# 1. Définition des chemins des fichiers
+# --------------------------------------------------------------------
 raster_paths <- list(
   "Sénégal" = list(
-    "NDVI" = "data/Senegal/Rasters/Spectral_index/NDVI_SN.tif",
-    "MNDWI" = "data/Senegal/Rasters/Spectral_index/MNDWI_SN.tif",
-    "BSI_1" = "data/Senegal/Rasters/Spectral_index/Bare_Soil_Index_SN.tif",
-    "NDBI" = "data/Senegal/Rasters/Spectral_index/NDBI_SN.tif",
-    "EVI" = "data/Senegal/Rasters/Spectral_index/EVI_SN.tif"
+    "NDVI"  = "data/Senegal/Rasters/Spectral_index/NDVI_SN_5km.tif",
+    "MNDWI" = "data/Senegal/Rasters/Spectral_index/MNDWI_SN_5km.tif",
+    "BSI_1" = "data/Senegal/Rasters/Spectral_index/Bare_Soil_Index_SN_5km.tif",
+    "NDBI"  = "data/Senegal/Rasters/Spectral_index/NDBI_SN_5km.tif",
+    "EVI"   = "data/Senegal/Rasters/Spectral_index/EVI_SN_5km.tif"
   ),
   "Burkina Faso" = list(
-    "NDVI" = "data/Burkina/Rasters/Spectral_index/NDVI_BFA.tif",
-    "MNDWI" = "data/Burkina/Rasters/Spectral_index/MNDWI_BFA.tif",
-    "BSI_1" = "data/Burkina/Rasters/Spectral_index/Bare_Soil_Index_BFA.tif",
-    "NDBI" = "data/Burkina/Rasters/Spectral_index/NDBI_BFA.tif",
-    "EVI" = "data/Burkina/Rasters/Spectral_index/EVI_BFA.tif"
+    "NDVI"  = "data/Burkina/Rasters/Spectral_index/NDVI_BFA_5km.tif",
+    "MNDWI" = "data/Burkina/Rasters/Spectral_index/MNDWI_BFA_5km.tif",
+    "BSI_1" = "data/Burkina/Rasters/Spectral_index/Bare_Soil_Index_BFA_5km.tif",
+    "NDBI"  = "data/Burkina/Rasters/Spectral_index/NDBI_BFA_5km.tif",
+    "EVI"   = "data/Burkina/Rasters/Spectral_index/EVI_BFA_5km.tif"
   )
 )
 
@@ -40,22 +42,28 @@ shapefile_paths <- list(
   )
 )
 
-# Définir les palettes pour les indices
+# --------------------------------------------------------------------
+# 2. Palettes de couleurs pour chaque indicateur
+# --------------------------------------------------------------------
 indicator_palettes <- list(
-  "NDVI" = "YlGn",      # Vert (végétation)
-  "MNDWI" = "Blues",    # Bleu (eau)
-  "BSI_1" = "Oranges",  # Orange (sols nus)
-  "NDBI" = "Purples",   # Violet (zones construites)
-  "EVI" = "Greens"      # Vert intense (végétation améliorée)
+  "NDVI"  = "YlGn",      # Vert (végétation)
+  "MNDWI" = "Blues",     # Bleu (eau)
+  "BSI_1" = "Oranges",   # Orange (sols nus)
+  "NDBI"  = "Purples",   # Violet (zones construites)
+  "EVI"   = "Greens"     # Vert intense (végétation améliorée)
 )
 
-# Définir le mapping des codes pays aux noms complets
+# --------------------------------------------------------------------
+# 3. Mapping des codes pays (SEN, BFA) vers leurs noms complets
+# --------------------------------------------------------------------
 pays_mapping <- list(
   "SEN" = "Sénégal",
   "BFA" = "Burkina Faso"
 )
 
-# Interface utilisateur
+# --------------------------------------------------------------------
+# 4. Interface utilisateur
+# --------------------------------------------------------------------
 ui <- fluidPage(
   
   sidebarLayout(
@@ -64,14 +72,14 @@ ui <- fluidPage(
                    choices = c("Raster", "Agrégation par Niveau Administratif"),
                    selected = "Raster"),
       
-      # Supprimer les sélecteurs de pays et d'indicateur
-      # Afficher les valeurs sélectionnées via l'URL
+      # Afficher les valeurs (pays / stat) provenant de l'URL
       uiOutput("selected_params"),
       
-      # Afficher le sélecteur de niveau administratif uniquement si Agrégation est choisi
+      # Sélecteur de niveau administratif (seulement si Agrégation)
       conditionalPanel(
         condition = "input.view_type == 'Agrégation par Niveau Administratif'",
-        selectInput("admin_level", "Niveau administratif :", choices = c("0", "1", "2", "3"), selected = "0")
+        selectInput("admin_level", "Niveau administratif :", 
+                    choices = c("0", "1", "2", "3"), selected = "0")
       )
     ),
     
@@ -81,7 +89,6 @@ ui <- fluidPage(
                leafletOutput("map", height = 600)
         ),
         column(4,
-               # Afficher la valeur moyenne seulement en mode Raster
                conditionalPanel(
                  condition = "input.view_type == 'Raster'",
                  wellPanel(
@@ -89,12 +96,10 @@ ui <- fluidPage(
                    textOutput("meanValue")
                  )
                ),
-               # Afficher les statistiques en mode Agrégation avec défilement
                conditionalPanel(
                  condition = "input.view_type == 'Agrégation par Niveau Administratif'",
                  wellPanel(
-                   h4("Statistiques par Zone Administratif"),
-                   # Encapsuler le tableau dans un div avec défilement
+                   h4("Statistiques par Zone Administrative"),
                    div(
                      style = "max-height: 400px; overflow-y: auto;",
                      tableOutput("adminStats")
@@ -107,43 +112,23 @@ ui <- fluidPage(
   )
 )
 
-# Serveur
+# --------------------------------------------------------------------
+# 5. Serveur
+# --------------------------------------------------------------------
 server <- function(input, output, session) {
   
-  # Pré-charger les rasters et shapefiles
-  raster_data <- raster_paths
-  for (country in names(raster_data)) {
-    for (stat in names(raster_data[[country]])) {
-      path <- raster_data[[country]][[stat]]
-      if (file.exists(path)) {
-        raster_data[[country]][[stat]] <- raster(path)
-      } else {
-        raster_data[[country]][[stat]] <- NULL
-      }
-    }
-  }
-  
-  shapefile_data <- shapefile_paths
-  for (country in names(shapefile_data)) {
-    for (level in names(shapefile_data[[country]])) {
-      path <- shapefile_data[[country]][[level]]
-      if (file.exists(path)) {
-        shapefile_data[[country]][[level]] <- st_read(path, quiet = TRUE)
-      } else {
-        shapefile_data[[country]][[level]] <- NULL
-      }
-    }
-  }
-  
-  # Fonction pour extraire les paramètres de l'URL
+  # ------------------------------------------------------------------
+  # 5.1 Récupération des paramètres depuis l'URL
+  # ------------------------------------------------------------------
   query <- reactive({
     parseQueryString(session$clientData$url_search)
   })
   
-  # Sélection du pays
   selected_pays_code <- reactive({
     pays_code <- query()$pays
-    if (is.null(pays_code) || length(pays_code) != 1 || !(toupper(pays_code) %in% names(pays_mapping))) {
+    if (is.null(pays_code) || length(pays_code) != 1 || 
+        !(toupper(pays_code) %in% names(pays_mapping))) {
+      # Défaut : SEN
       "SEN"
     } else {
       toupper(pays_code)
@@ -151,112 +136,132 @@ server <- function(input, output, session) {
   })
   
   selected_pays <- reactive({
-    pays_code <- selected_pays_code()
-    pays_mapping[[pays_code]]
+    pays_mapping[[ selected_pays_code() ]]
   })
   
-  # Sélection de la statistique
   selected_stat <- reactive({
     stat <- query()$stat
-    if (is.null(stat) || length(stat) != 1 || !(stat %in% names(indicator_palettes))) {
+    if (is.null(stat) || length(stat) != 1 || 
+        !(stat %in% names(indicator_palettes))) {
+      # Défaut : NDVI
       "NDVI"
     } else {
       stat
     }
   })
   
-  # Raster courant
+  # ------------------------------------------------------------------
+  # 5.2 Lecture “à la demande” (lazy loading) du raster
+  # ------------------------------------------------------------------
   current_raster <- reactive({
     req(selected_pays(), selected_stat())
-    raster_obj <- raster_data[[selected_pays()]][[selected_stat()]]
-    if (!is.null(raster_obj)) {
-      raster_obj
+    path <- raster_paths[[ selected_pays() ]][[ selected_stat() ]]
+    if (!is.null(path) && file.exists(path)) {
+      raster::raster(path)
     } else {
       NULL
     }
   })
   
-  # Shapefile courant
+  # ------------------------------------------------------------------
+  # 5.3 Lecture “à la demande” du shapefile
+  # ------------------------------------------------------------------
   current_shapefile <- reactive({
     req(selected_pays(), input$admin_level)
-    shapefile_obj <- shapefile_data[[selected_pays()]][[as.character(input$admin_level)]]
-    if (!is.null(shapefile_obj)) {
-      shapefile_obj
+    path <- shapefile_paths[[ selected_pays() ]][[ as.character(input$admin_level) ]]
+    if (!is.null(path) && file.exists(path)) {
+      st_read(path, quiet = TRUE)
     } else {
       NULL
     }
   })
   
-  # Nom de la zone
+  # ------------------------------------------------------------------
+  # 5.4 Détection de la colonne de nom de zone (première colonne texte)
+  # ------------------------------------------------------------------
   zone_name_column <- reactive({
-    shapefile <- current_shapefile()
-    if (is.null(shapefile)) return(NULL)
-    char_cols <- names(shapefile)[sapply(shapefile, function(col) is.character(col) || is.factor(col))]
+    shp <- current_shapefile()
+    if (is.null(shp)) return(NULL)
+    char_cols <- names(shp)[sapply(shp, function(col) is.character(col) || is.factor(col))]
     if (length(char_cols) == 0) {
       return(NULL)
     }
+    # On prend la première colonne qui est de type texte
     char_cols[1]
   })
   
-  # Données agrégées
+  # ------------------------------------------------------------------
+  # 5.5 Calcul agrégé (exactextractr) par zone
+  # ------------------------------------------------------------------
   aggregated_data <- reactive({
     req(current_raster(), current_shapefile(), zone_name_column())
-    extracted_values <- exact_extract(current_raster(), current_shapefile(), 'mean')
-    shapefile_df <- current_shapefile()
-    shapefile_df$mean_value <- extracted_values
-    shapefile_df
+    extracted_vals <- exact_extract(current_raster(), current_shapefile(), 'mean')
+    shp_df <- current_shapefile()
+    shp_df$mean_value <- extracted_vals
+    shp_df
   })
   
-  # Moyenne globale
+  # ------------------------------------------------------------------
+  # 5.6 Calcul de la moyenne globale (uniquement en mode Raster)
+  # ------------------------------------------------------------------
   mean_value <- reactive({
     req(current_raster())
-    round(cellStats(current_raster(), stat = "mean", na.rm = TRUE), 2)
+    round(raster::cellStats(current_raster(), stat = "mean", na.rm = TRUE), 2)
   })
   
-  # Carte Leaflet
+  # ------------------------------------------------------------------
+  # 5.7 Output Leaflet (renderLeaflet)
+  # ------------------------------------------------------------------
   output$map <- renderLeaflet({
+    
     if (input$view_type == "Raster") {
-      req(current_raster(), selected_stat(), selected_pays())
+      # ---------- Mode Raster -----------
+      req(current_raster())
+      rast <- current_raster()
+      stat <- selected_stat()
       
-      raster_obj <- current_raster()
-      palette <- colorNumeric(
-        palette = indicator_palettes[[selected_stat()]],
-        domain = values(raster_obj),
+      # Palette
+      pal <- colorNumeric(
+        palette = indicator_palettes[[ stat ]],
+        domain  = values(rast),
         na.color = "transparent"
       )
       
       leaflet() %>%
         addTiles() %>%
         addRasterImage(
-          raster_obj,
-          colors = palette,
+          rast,
+          colors = pal,
           opacity = 0.8,
-          group = selected_stat()
+          group = stat
         ) %>%
         addLegend(
-          pal = palette,
-          values = values(raster_obj),
-          title = paste("Indice :", selected_stat()),
+          pal = pal,
+          values = values(rast),
+          title = paste("Indice :", stat),
           position = "bottomright"
         )
       
-    } else if (input$view_type == "Agrégation par Niveau Administratif") {
-      req(aggregated_data(), selected_stat(), selected_pays(), input$admin_level)
-      
-      shapefile_df <- aggregated_data()
+    } else {
+      # ---------- Mode Agrégation -----------
+      req(aggregated_data())
+      shp_df <- aggregated_data()
+      stat <- selected_stat()
       zone_col <- zone_name_column()
       
       pal <- colorNumeric(
-        palette = indicator_palettes[[selected_stat()]],
-        domain = shapefile_df$mean_value,
+        palette = indicator_palettes[[ stat ]],
+        domain  = shp_df$mean_value,
         na.color = "transparent"
       )
       
-      labels <- paste0(shapefile_df[[zone_col]], ": ", 
-                       ifelse(is.na(shapefile_df$mean_value), "NA", 
-                              paste0("Valeur Moyenne: ", round(shapefile_df$mean_value, 2))))
+      labels <- paste0(
+        shp_df[[zone_col]], ": ",
+        ifelse(is.na(shp_df$mean_value), "NA",
+               paste0("Valeur moyenne : ", round(shp_df$mean_value, 2)))
+      )
       
-      leaflet(shapefile_df) %>%
+      leaflet(shp_df) %>%
         addTiles() %>%
         addPolygons(
           fillColor = ~pal(mean_value),
@@ -273,26 +278,31 @@ server <- function(input, output, session) {
         ) %>%
         addLegend(
           pal = pal,
-          values = shapefile_df$mean_value,
-          title = paste("Indice :", selected_stat()),
+          values = shp_df$mean_value,
+          title = paste("Indice :", stat),
           position = "bottomright"
         )
     }
   })
   
-  # Valeur moyenne globale
+  # ------------------------------------------------------------------
+  # 5.8 Affichage de la moyenne globale (texte)
+  # ------------------------------------------------------------------
   output$meanValue <- renderText({
     req(input$view_type == "Raster", mean_value())
-    paste("Valeur moyenne globale de l'indicateur sélectionné :", mean_value())
+    paste("Valeur moyenne globale de l'indicateur :", mean_value())
   })
   
-  # Statistiques par niveau administratif
+  # ------------------------------------------------------------------
+  # 5.9 Tableau des statistiques par zone
+  # ------------------------------------------------------------------
   output$adminStats <- renderTable({
-    req(input$view_type == "Agrégation par Niveau Administratif", aggregated_data(), zone_name_column())
-    shapefile_df <- aggregated_data()
+    req(input$view_type == "Agrégation par Niveau Administratif", aggregated_data())
+    shp_df <- aggregated_data()
     zone_col <- zone_name_column()
+    if (is.null(zone_col)) return(NULL)
     
-    stats_table <- shapefile_df %>%
+    stats_table <- shp_df %>%
       st_set_geometry(NULL) %>%
       select(Zone = all_of(zone_col), Mean_Value = mean_value) %>%
       arrange(desc(Mean_Value))
@@ -304,5 +314,7 @@ server <- function(input, output, session) {
   
 }
 
-# Lancer l'application Shiny
+# --------------------------------------------------------------------
+# 6. Lancement de l'application
+# --------------------------------------------------------------------
 shinyApp(ui, server)
