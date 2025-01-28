@@ -35,7 +35,6 @@ Bienvenue sur la **Plateforme de Statistique Exploratoire Spatiale**, développ�
         - [4.2. Types d'Événements](#42-types-dévénements)
 6. [Sources de Données](#sources-de-données)
 7. [Contribution](#contribution)
-8. [Installation](#installation)
 
 ## Introduction
 
