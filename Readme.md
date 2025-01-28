@@ -2,7 +2,7 @@
 
 Bienvenue sur la **Plateforme de Statistique Exploratoire Spatiale**, développée dans le cadre du cours de Statistique Exploratoire Spatiale à l'École Nationale de la Statistique et de l'Analyse Économique Pierre NDIAYE de Dakar.
 
-![Image de la Plateforme](assets\img\image_plateforme.png)
+![Image de la Plateforme](https://github.com/PapaAmad/Plateforme-HEMA/blob/main/assets/img/image_plateforme.png)
 
 ## Table des Matières
 
