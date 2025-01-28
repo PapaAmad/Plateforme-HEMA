@@ -11,7 +11,7 @@
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Projet de statistique exploratoire spatiale">
     <meta property="og:description" content="Une plateforme web qui présente un résumé des indicateurs statistiques spatiaux calculés au niveau administratif pour le Sénégal et le Burkina Faso.">
-    <meta property="og:image" content="https://raw.githubusercontent.com/PapaAmad/Plateforme-HEMA/refs/heads/main/assets/img/tag_image.jpeg">
+    <meta property="og:image" content="https://raw.githubusercontent.com/PapaAmad/Plateforme-HEMA/main/assets/img/tag_image.jpeg">
     <meta property="og:url" content="https://papaamad.github.io/Plateforme-HEMA/">
     <meta property="og:type" content="website">
 
@@ -101,40 +101,41 @@
         <h1 class="animated-title">Note Technique</h1>
 
         <div class="guide-section">
-            <h2>M&#xe9;thodologie</h2>
-            <p>Cette section d&#xe9;taille les m&#xe9;thodes statistiques et analytiques utilis&#xe9;es dans notre plateforme.</p>
+            <h2>Méthodologie</h2>
+            <p>La plateforme utilise une architecture web intégrant des applications Shiny pour la visualisation interactive des données spatiales. Les technologies principales incluent R, Shiny, JavaScript, HTML5, et CSS3.</p>
             
             <div class="tech-details">
-                <h3>Sources des Donn&#xe9;es</h3>
+                <h3>Technologies Utilisées</h3>
                 <ul>
-                    <li>Donn&#xe9;es d&#xe9;mographiques : recensements nationaux</li>
-                    <li>Indicateurs &#xe9;conomiques : banques de donn&#xe9;es internationales</li>
-                    <li>Donn&#xe9;es g&#xe9;ospatiales : OpenStreetMap et sources gouvernementales</li>
+                    <li><strong>Langages :</strong> R, JavaScript, HTML5, CSS3</li>
+                    <li><strong>Frameworks :</strong> Shiny, Bootstrap</li>
+                    <li><strong>Outils :</strong> GitHub, ShinyApps.io, Google Earth Engine</li>
                 </ul>
             </div>
         </div>
 
         <div class="guide-section">
-            <h2>Traitement des Donn&#xe9;es</h2>
+            <h2>Traitement des Données</h2>
             <div class="tech-details">
-                <p>Les donn&#xe9;es sont trait&#xe9;es selon le protocole suivant :</p>
+                <p>Les données spatiales et démographiques sont nettoyées, validées et agrégées au niveau administratif. Les indicateurs statistiques sont calculés à partir de données raster et vectorielles en utilisant des packages R tels que <em>sf</em> et <em>terra</em>.</p>
                 <ol>
-                    <li>Nettoyage et validation des donn&#xe9;es brutes</li>
-                    <li>Agr&#xe9;gation au niveau infranational</li>
-                    <li>Calcul des indicateurs statistiques</li>
-                    <li>Validation crois&#xe9;e des r&#xe9;sultats</li>
+                    <li>Chargement et lecture des shapefiles administratifs.</li>
+                    <li>Traitement des rasters de malaria et de population.</li>
+                    <li>Calcul des indicateurs comme le taux de malaria et les indices spectraux.</li>
+                    <li>Classification des zones basées sur les indicateurs calculés.</li>
                 </ol>
             </div>
         </div>
 
         <div class="guide-section">
-            <h2>Sp&#xe9;cifications Techniques</h2>
+            <h2>Spécifications Techniques</h2>
             <div class="tech-details">
                 <h3>Configuration Requise</h3>
                 <ul>
-                    <li>Navigateurs support&#xe9;s : Chrome (v70+), Firefox (v65+), Safari (v12+)</li>
-                    <li>R&#xe9;solution d&apos;&#xe9;cran minimale : 320px</li>
-                    <li>JavaScript doit &#xea;tre activ&#xe9;</li>
+                    <li>Navigateurs supportés : Chrome (v70+), Firefox (v65+), Safari (v12+)</li>
+                    <li>Résolution d'écran minimale : 320px</li>
+                    <li>JavaScript activé</li>
+                    <li>R (version 4.0+) et RStudio pour le développement local</li>
                 </ul>
             </div>
         </div>
@@ -144,10 +145,11 @@
             <div class="tech-details version-history">
                 <div class="version">
                     <h3>Version 1.0.0</h3>
-                    <p class="date">Septembre 2023</p>
+                    <p class="date">Janvier 2025</p>
                     <ul>
-                        <li>Lancement initial</li>
-                        <li>Impl&#xe9;mentation des fonctionnalit&#xe9;s de base</li>
+                        <li>Lancement initial de la plateforme.</li>
+                        <li>Intégration des applications Shiny pour les indicateurs principaux.</li>
+                        <li>Déploiement sur ShinyApps.io et GitHub Pages.</li>
                     </ul>
                 </div>
             </div>
