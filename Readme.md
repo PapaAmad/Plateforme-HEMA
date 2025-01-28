@@ -24,7 +24,7 @@ Cette plateforme web présente un résumé des indicateurs statistiques spatiaux
 L'objectif principal de ce projet est de rassembler et d'appliquer tous les travaux pratiques (TP) réalisés lors du cours dispensé par [**M. Aboubacar HEMA**](https://github.com/Abson-dev/). Vous trouverez l'ensemble de ces TP dans ce dépôt [GitHub](https://github.com/Abson-dev/Statistique-Exploratoire-Spatiale), offrant ainsi une ressource complète pour les étudiants et les chercheurs intéressés par l'analyse spatiale des données statistiques.
 
 ### Demo
-![Nom de la vidéo](https://github.com/PapaAmad/Plateforme-HEMA/blob/main/assets/vid/demo.mp4)
+![Demo](https://drive.google.com/file/d/1rQSg2cva6opBOcvEtDS7gx27yEtR3UCz/view?usp=sharing)
 
 ## Accès à la Plateforme et aux Applications Shiny
 
