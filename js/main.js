@@ -61,59 +61,57 @@ const indexDescriptions = {
     ]
   },  
   NDVI: {
-    description: "Description for NDVI...",
+    description: "L’indice de végétation par différence normalisée (NDVI) est un indicateur de la densité et de la santé de la végétation. Il est calculé à partir des bandes spectrales du proche infrarouge (NIR) et du rouge (RED) d’une image satellite (ici Copernicus).",
     advantages: [
-      "Advantage 1",
-      "Advantage 2",
-      "Advantage 3"
+      "Évaluation de la santé de la végétation : Le NDVI permet d’estimer la densité chlorophyllienne et la vitalité des plantes, utile pour surveiller les cultures ou les forêts.1",
+      "Suivi des changements environnementaux : Il aide à détecter les zones de déforestation ou les effets de la sécheresse.",
+      "Planification agricole : Il offre des informations cruciales pour optimiser l’utilisation des terres agricoles et anticiper les récoltes."
     ]
   },
   MNDWI: {
-    description: "Description for MNDWI...",
+    description: "L’indice de différence normalisée d’eau modifié (MNDWI) est utilisé pour détecter les zones couvertes par l’eau et est particulièrement efficace pour différencier les surfaces aquatiques des sols ou de la végétation. Il est calculé en utilisant les bandes du vert (GREEN) et du moyen infrarouge (SWIR).",
     advantages: [
-      "Advantage 1",
-      "Advantage 2",
-      "Advantage 3"
+      "Détection précise des étendues d'eau : Le MNDWI améliore la distinction entre l'eau et d'autres surfaces comme la végétation ou les sols nus, réduisant ainsi les erreurs de classification.",
+      "Cartographie des ressources hydriques : Il permet de créer des cartes détaillées des plans d'eau, utiles pour la gestion des ressources en eau et la planification urbaine.",
+      "Surveillance des inondations et des changements hydrologiques : Le MNDWI est efficace pour détecter les zones inondées et suivre les variations des niveaux d'eau au fil du temps.",
     ]
   },
   BSI_1: {
-    description: "Description for BSI_1...",
+    description: "L’indice de stabilité du sol (BSI_1) mesure les caractéristiques du sol en fonction de sa teneur en matières organiques et de son exposition. Il est calculé à partir des bandes du rouge (RED), du proche infrarouge (NIR), du bleu (BLUE) et du moyen infrarouge (SWIR) d’une image satellite de Copernicus.",
     advantages: [
-      "Advantage 1",
-      "Advantage 2",
-      "Advantage 3"
+      "Analyse des sols dénudés : Le BSI_1 identifie les sols exposés, permettant de surveiller l’érosion et les risques de dégradation des terres.",
+      "Aménagement du territoire : Il aide à identifier les zones vulnérables nécessitant des interventions pour stabiliser les sols.",
+      "Suivi des changements environnementaux : Il permet de surveiller l’impact des activités humaines sur la stabilité des sols (urbanisation, agriculture intensive)."
     ]
   },
   NDBI: {
-    description: "Description for NDBI...",
+    description: "L’indice de développement urbain par différence normalisée (NDBI) permet d’identifier les zones urbanisées. Il est basé sur les bandes du moyen infrarouge (SWIR) et du proche infrarouge (NIR).",
     advantages: [
-      "Advantage 1",
-      "Advantage 2",
-      "Advantage 3"
+      "Détection précise des zones urbaines grâce aux bandes SWIR et NIR",
+      "Compatibilité avec diverses données satellitaires pour une large application",
+      "Outil efficace pour le suivi et la planification de l'expansion urbaine"
     ]
   },
   EVI: {
-    description: "Description for EVI...",
+    description: "L’indice amélioré de végétation (EVI) est utilisé pour une évaluation précise de la végétation, en tenant compte des corrections liées à l’effet de l’atmosphère et des sols.",
     advantages: [
-      "Advantage 1",
-      "Advantage 2",
-      "Advantage 3"
+      "Précision accrue sur la végétation : L’EVI corrige les effets atmosphériques et les interférences des sols, fournissant une estimation plus fiable de la santé végétale.",
+      "Suivi des écosystèmes : Il est particulièrement adapté pour surveiller les forêts tropicales et les zones densément végétalisées.",
+      "Aide à la gestion agricole : Il permet de mieux comprendre les conditions de croissance des cultures, améliorant ainsi la gestion agricole."
     ]
   },
   event_type: {
-    description: "Description for event_type...",
+    description: "Cet indicateur permet de visualiser entre autres les types d'événement depuis 1997. Vous pourrez suivre l'évolution de la carte dans les différents onglets.",
     advantages: [
-      "Advantage 1",
-      "Advantage 2",
-      "Advantage 3"
+      "Une identification des défis spécifiques auxquels fait face le niveau administratif choisi.",
+      "Une identification des acteurs impliqués : les types d'événements peuvent révéler des informations importantes sur les groupes en activité dans une zone, comme des groupes rebelles, des manifestants, ou des forces de sécurité."
     ]
   },
   event_count: {
-    description: "Description for event_count...",
+    description: "Cet indicateur permet de visualiser entre autres le nombre d'évenement politique ainsi que d'autres événements à caractère dangereux depuis 1997. Vous pourrez suivre l'évolution de la carte dans les différents onglets.",
     advantages: [
-      "Advantage 1",
-      "Advantage 2",
-      "Advantage 3"
+      "Une identification des zones à risque : cela permet aux utilisateurs de repérer facilement les niveaux administratifs où se concentrent le plus grand nombre d’événements. ",
+      "Une surveillance des tendances locales : cela permet de suivre le nombre d'événements au fil du temps dans une zone spécifique et permet de détecter des tendances."
     ]
   }
 };
