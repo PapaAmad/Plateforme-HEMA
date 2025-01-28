@@ -693,7 +693,7 @@ Les données utilisées proviennent principalement de la plateforme Google Earth
 
 ## Contribution
 
-Ce projet est le fruit du travail collectif des étudiants :
+Ce projet est le fruit du travail collectif des élèves :
 
 - [**Papa Amadou NIANG**](https://github.com/PapaAmad/)
 - [**Mame Balla BOUSSO**](https://github.com/MameBallaBousso)
