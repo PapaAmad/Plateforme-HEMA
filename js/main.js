@@ -99,13 +99,30 @@ const indexDescriptions = {
       "Advantage 2",
       "Advantage 3"
     ]
+  },
+  event_type: {
+    description: "Description for event_type...",
+    advantages: [
+      "Advantage 1",
+      "Advantage 2",
+      "Advantage 3"
+    ]
+  },
+  event_count: {
+    description: "Description for event_count...",
+    advantages: [
+      "Advantage 1",
+      "Advantage 2",
+      "Advantage 3"
+    ]
   }
 };
 
 // Mapping des groupes d'indices aux URLs Shiny correspondantes
 const shinyURLs = {
   "Taux de malaria": "https://papaamad.shinyapps.io/SES_Shiny/",
-  "Indices spectraux": "https://papaamad.shinyapps.io/SES_Shiny_Spectral/"
+  "Indices spectraux": "https://papaamad.shinyapps.io/SES_Shiny_Spectral/",
+  "Evenements dangereux": "https://papaamad.shinyapps.io/SES_Shiny_event/"
 };
 
 // 1) Choix du pays

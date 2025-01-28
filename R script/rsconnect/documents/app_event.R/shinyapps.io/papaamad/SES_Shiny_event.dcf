@@ -1,0 +1,13 @@
+name: SES_Shiny_event
+title: SES_Shiny_event
+username: papaamad
+account: papaamad
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 13827428
+bundleId: 9709384
+url: https://papaamad.shinyapps.io/SES_Shiny_event/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: .RData|app.R|spectral_index_app.R|test.R|test_malaria_classification.R|test_maliria_worldpop.R
