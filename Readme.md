@@ -263,6 +263,9 @@ years_vec <- 2000:2022
 
 Les rasters de population (WorldPop) fournissent des données démographiques nécessaires pour calculer les indicateurs d'enfants malades. Ces rasters sont agrégés pour correspondre à la résolution des rasters de malaria, facilitant ainsi les calculs de taux et de nombres d'enfants malades.
 
+> [!NOTE]
+> Les raster Worldpop ont été utilisés pour toutes les 23 années par soucis de manque de données.
+
 ```r
 # Fonction pour agréger les rasters de population si nécessaire
 aggregate_population <- function(country_code, worldpop_path, fact = 50) {
@@ -703,20 +706,3 @@ Vous pourrez trouver dans [**ce dépôt GitHub central**](https://github.com/Abs
 ---
 
 *Ce README a été conçu pour fournir une vue d'ensemble complète de la Plateforme de Statistique Exploratoire Spatiale, incluant des détails techniques sur l'intégration des applications Shiny, des exemples de liens, ainsi que des informations détaillées sur les groupes d'indices, la documentation des événements et les sources de données.*
-
-## All GitHub Alert Types
-
-> [!NOTE]
-> Highlights information that users should take into account, even when skimming.
-
-> [!TIP]
-> Optional information to help a user be more successful.
-
-> [!IMPORTANT]
-> Crucial information necessary for users to succeed.
-
-> [!WARNING]
-> Critical content demanding immediate user attention due to potential risks.
-
-> [!CAUTION]
-> Negative potential consequences of an action.
