@@ -1,6 +1,6 @@
 # Plateforme de Statistique Exploratoire Spatiale
 
-Bienvenue sur la **Plateforme de Statistique Exploratoire Spatiale**, développée dans le cadre du cours de Statistique Exploratoire Spatiale à l'École Nationale de la Statistique et de l'Analyse Économique Pierre NDIAYE de Dakar.
+Bienvenue sur la **Plateforme de Statistique Exploratoire Spatiale**, développée dans le cadre du cours de Statistique Exploratoire Spatiale donné à l'Ecole nationale de la Statistique et de l'Analyse économique Pierre NDIAYE de Dakar (ENSAE).
 
 ![Image de la Plateforme](https://github.com/PapaAmad/Plateforme-HEMA/blob/main/assets/img/image_plateforme.png)
 
@@ -16,13 +16,12 @@ Bienvenue sur la **Plateforme de Statistique Exploratoire Spatiale**, développ�
 4. [Groupes d'Indices](#groupes-dindices)
 5. [Sources de Données](#sources-de-données)
 6. [Contribution](#contribution)
-7. [Contact](#contact)
 
 ## Introduction
 
 Cette plateforme web présente un résumé des indicateurs statistiques spatiaux calculés au niveau administratif pour le **Sénégal** et le **Burkina Faso**. Elle offre une visualisation interactive des indicateurs tels que le taux de malaria, les indices spectraux comme le NDVI, ainsi que des indicateurs liés aux événements dangereux.
 
-L'objectif principal de ce projet est de rassembler et de présenter tous les travaux pratiques (TP) réalisés lors du cours dispensé par [**M. Aboubacar HEMA**](https://github.com/). Vous trouverez l'ensemble de ces TP dans ce dépôt GitHub, offrant ainsi une ressource complète pour les étudiants et les chercheurs intéressés par l'analyse spatiale des données statistiques.
+L'objectif principal de ce projet est de rassembler et d'appliquer tous les travaux pratiques (TP) réalisés lors du cours dispensé par [**M. Aboubacar HEMA**](https://github.com/Abson-dev/). Vous trouverez l'ensemble de ces TP dans ce dépôt [GitHub](https://github.com/Abson-dev/Statistique-Exploratoire-Spatiale), offrant ainsi une ressource complète pour les étudiants et les chercheurs intéressés par l'analyse spatiale des données statistiques.
 
 ## Accès à la Plateforme et aux Applications Shiny
 
@@ -30,7 +29,7 @@ L'objectif principal de ce projet est de rassembler et de présenter tous les tr
 - **Lien des applications Shiny** :
   - [Taux de Malaria](https://papaamad.shinyapps.io/SES_Shiny/)
   - [Indices Spectraux](https://papaamad.shinyapps.io/SES_Shiny_Spectral/)
-  - [Événements Dangereux](https://papaamad.shinyapps.io/SES_Shiny_event/)
+  - [Evénements Dangereux](https://papaamad.shinyapps.io/SES_Shiny_event/)
 
 ## Intégration des Applications Shiny
 
@@ -51,7 +50,7 @@ La plateforme utilise une **iframe** pour intégrer les applications Shiny. Voic
 </div>
 ```
 - **`div#shinyContainer`** : Conteneur qui enveloppe l'iframe. Il est initialement caché (`display: none`) et s'affiche lorsqu'une application Shiny est sélectionnée.
-- **`iframe#shinyFrame`** : Élément iframe où l'application Shiny est chargée. La source (`src`) est définie dynamiquement via JavaScript en fonction de la sélection de l'utilisateur.
+- **`iframe#shinyFrame`** : Elément iframe où l'application Shiny est chargée. La source (`src`) est définie dynamiquement via JavaScript en fonction de la sélection de l'utilisateur.
 
 ### Script JavaScript
 
@@ -166,24 +165,19 @@ Les applications Shiny sont accessibles via des URLs spécifiques, intégrant de
    ```
    https://papaamad.shinyapps.io/SES_Shiny/?pays=SEN&stat=Mean
    ```
+   ![Image](https://github.com/PapaAmad/Plateforme-HEMA/blob/main/assets/img/image1.png)
 
 2. **Indices Spectraux au Burkina Faso avec NDVI** :
    ```
    https://papaamad.shinyapps.io/SES_Shiny_Spectral/?pays=BFA&stat=NDVI
    ```
+   ![Image](https://github.com/PapaAmad/Plateforme-HEMA/blob/main/assets/img/image2.png)
 
 3. **Événements Dangereux au Sénégal avec Type d'Événements** :
    ```
    https://papaamad.shinyapps.io/SES_Shiny_event/?pays=SEN&stat=event_type
    ```
-
-**Explications :**
-
-- **Paramètres de Requête** :
-  - `pays` : Code du pays sélectionné (`SEN` pour Sénégal, `BFA` pour Burkina Faso).
-  - `stat` : Indice ou statistique sélectionnée (par exemple, `Mean` pour le taux moyen de malaria).
-
-Ces liens permettent de personnaliser les applications Shiny en fonction des choix de l'utilisateur, offrant ainsi une expérience interactive et adaptée.
+   ![Image](https://github.com/PapaAmad/Plateforme-HEMA/blob/main/assets/img/image3.png)
 
 ## Groupes d'Indices
 
@@ -234,40 +228,18 @@ Toutes les données utilisées sont mises à jour régulièrement pour garantir 
 
 ## Contribution
 
-Ce projet est le fruit du travail collectif des étudiants du cours de Statistique Exploratoire Spatiale sous la supervision de **M. Aboubacar HEMA**. Les contributions sous forme de rapports de TP, de codes et de visualisations peuvent être effectuées via ce dépôt GitHub. N'hésitez pas à soumettre des issues ou des pull requests pour améliorer la plateforme.
+Ce projet est le fruit du travail collectif des étudiants :
 
-## Licence
+- [**Papa Amadou NIANG**](https://github.com/PapaAmad/)
+- [**Mame Balla BOUSSO**](https://github.com/MameBallaBousso)
+- [**Ameth FAYE**](https://github.com/ameth08faye)
+- [**Edima BIYENDA HILEDEGARDE**](https://github.com/HildaEDIMA)
 
-Ce projet est sous licence [MIT](LICENSE).
-
-## Contact
-
-Pour toute question ou suggestion, veuillez contacter :
-
-- **Nom** : [Votre Nom]
-- **Email** : [votre.email@example.com]
-- **GitHub** : [https://github.com/PapaAmad/Plateforme-HEMA](https://github.com/PapaAmad/Plateforme-HEMA)
+Vous pourrez trouver dans [**ce dépôt GitHub central**](https://github.com/Abson-dev/Statistique-Exploratoire-Spatiale/tree/main/Projet) le travail des autres groupes.
 
 ---
 
 *Ce README a été conçu pour fournir une vue d'ensemble complète de la Plateforme de Statistique Exploratoire Spatiale, incluant des détails techniques sur l'intégration des applications Shiny, des exemples de liens, ainsi que des informations sur les groupes d'indices et les sources de données.*
-
-# Licence
-
-Ce projet est sous licence [MIT](LICENSE).
-
-# Contact
-
-Pour toute question ou suggestion, veuillez contacter :
-
-- **Nom** : [Votre Nom]
-- **Email** : [votre.email@example.com]
-- **GitHub** : [https://github.com/PapaAmad/Plateforme-HEMA](https://github.com/PapaAmad/Plateforme-HEMA)
-
----
-
-*Ce README a été conçu pour fournir une vue d'ensemble complète de la Plateforme de Statistique Exploratoire Spatiale, incluant des détails techniques sur l'intégration des applications Shiny, des exemples de liens, ainsi que des informations sur les groupes d'indices et les sources de données.*
-
 
 ## All GitHub Alert Types
 
