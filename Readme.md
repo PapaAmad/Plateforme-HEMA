@@ -26,15 +26,14 @@ Bienvenue sur la **Plateforme de Statistique Exploratoire Spatiale**, développ�
         - [2.4. NDBI (Indice de Développement Urbain par Différence Normalisée)](#24-ndbi-indice-de-développement-urbain-par-différence-normalisée)
         - [2.5. EVI (Indice Amélioré de Végétation)](#25-evi-indice-amélioré-de-végétation)
     - [3. Événements Dangereux](#3-événements-dangereux)
-5. [Documentation sur les Événements](#documentation-sur-les-événements)
-    - [1. Résumé des Données par Niveau Administratif](#1-résumé-des-données-par-niveau-administratif)
-    - [2. Analyse Temporelle des Événements](#2-analyse-temporelle-des-événements)
-    - [3. Présentation de la Base de Données Utilisée](#3-présentation-de-la-base-de-données-utilisée)
-    - [4. Avantages des Indicateurs Calculés](#4-avantages-des-indicateurs-calculés)
-        - [4.1. Nombre d'Événements](#41-nombre-dévénements)
-        - [4.2. Types d'Événements](#42-types-dévénements)
-6. [Sources de Données](#sources-de-données)
-7. [Contribution](#contribution)
+      - [3.1. Résumé des Données par Niveau Administratif](#31-résumé-des-données-par-niveau-administratif)
+      - [3.2. Analyse Temporelle des Événements](#32-analyse-temporelle-des-événements)
+      - [3.3. Présentation de la Base de Données Utilisée](#33-présentation-de-la-base-de-données-utilisée)
+      - [3.4. Avantages des Indicateurs Calculés](#34-avantages-des-indicateurs-calculés)
+          - [3.4.1. Nombre d'Événements](#341-nombre-dévénements)
+          - [3.4.2. Types d'Événements](#342-types-dévénements)
+5. [Sources de Données](#sources-de-données)
+6. [Contribution](#contribution)
 
 ## Introduction
 
@@ -631,18 +630,9 @@ EVI = G * (NIR – RED) / (NIR + C1 * RED – C2 * BLUE + L)
 
 ### 3. Événements Dangereux
 
-Ce groupe d'indices se concentre sur les événements potentiellement dangereux affectant les régions étudiées. Les indicateurs disponibles incluent :
-
-- **Type d'Événements** : Classification des différents types d'événements dangereux.
-- **Nombre d'Événements** : Comptage total des événements recensés.
-
-Ces indicateurs permettent de suivre et d'analyser la fréquence et la répartition des événements dangereux, contribuant ainsi à la gestion des risques et à la planification des interventions.
-
-## Documentation sur les Événements
-
 La base de données utilisée contient un total de **87 223 événements** enregistrés. Parmi eux, **12 489 événements** concernent le couple de pays (Sénégal, Burkina Faso).
 
-### 1. Résumé des Données par Niveau Administratif
+#### 3.1. Résumé des Données par Niveau Administratif
 
 L'application génère un résumé statistique des événements en fonction du niveau administratif sélectionné par l'utilisateur.
 
@@ -652,7 +642,7 @@ L'application génère un résumé statistique des événements en fonction du n
 3. Calcul du nombre total d'événements pour chaque entité administrative.
 4. Tri des résultats pour afficher les zones les plus touchées en premier.
 
-### 2. Analyse Temporelle des Événements
+#### 3.2. Analyse Temporelle des Événements
 
 L'application génère une visualisation des tendances temporelles pour suivre l'évolution des événements au fil du temps.
 
@@ -662,7 +652,7 @@ L'application génère une visualisation des tendances temporelles pour suivre l
 3. Affichage d’une série chronologique montrant l'évolution des événements.
 4. Ajout de points et d'une courbe pour visualiser les tendances.
 
-### 3. Présentation de la Base de Données Utilisée
+#### 3.3. Présentation de la Base de Données Utilisée
 
 Cette base de données regroupe des informations sur différents événements qui se sont déroulés dans seize (16) pays dont le Sénégal et le Burkina Faso. Les différents événements qui figurent dans la base de données sont les suivants : violences à distance, affrontements, développements stratégiques, émeutes, protestations et violences contre les civils. Tous ces événements sont présents au Sénégal et au Burkina Faso.
 
@@ -671,16 +661,16 @@ Les troubles enregistrés dans cette base sont regroupés en trois grandes caté
 - **Développements Stratégiques**
 - **Manifestations**
 
-### 4. Avantages des Indicateurs Calculés
+#### 3.4. Avantages des Indicateurs Calculés
 
-#### 4.1. Nombre d'Événements
+##### 3.4.1. Nombre d'Événements
 
 L’affichage du nombre d'événements permet entre autres :
 
 - **Identification des zones à risque** : Cela permet aux utilisateurs de repérer facilement les niveaux administratifs où se concentrent le plus grand nombre d'événements.
 - **Surveillance des tendances locales** : Cela permet de suivre le nombre d'événements au fil du temps dans une zone spécifique et de détecter des tendances.
 
-#### 4.2. Types d'Événements
+##### 3.4.2. Types d'Événements
 
 L’affichage du type d'événements pour un niveau administratif choisi permet :
 
